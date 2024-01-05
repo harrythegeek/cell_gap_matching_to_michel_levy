@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from matplotlib.patches import Rectangle
 from PIL import Image
 
 def extract_color(image, x, y):
@@ -7,35 +6,33 @@ def extract_color(image, x, y):
     img = Image.open(image)
     # Get the RGB values of the selected pixel
     color = img.getpixel((x, y))
+
     return color
 
 # Load your image
-image_path = 'michel_levy_for_colour_extraction.jpeg'
+image_path = r"C:\Users\Harry.Delalis\PycharmProjects\cell_gap_matching_to_michel_levy\images\R486-02-ON_collage.jpg"
 img = plt.imread(image_path)
 
 # Create a figure and display the image
 fig, ax = plt.subplots()
 ax.imshow(img)
 
-# Prompt the user to click on two points to define a rectangle
-points = plt.ginput(2, timeout=-1)
 
-# Close the plot after the user has selected the points
-#plt.close()
+# Prompt the user to click on points to define a rectangle
+points = plt.ginput(input(), timeout=-1)
+print(points)
 
-# Extract the coordinates of the selected region
-x1, y1 = points[0]
-x2, y2 = points[1]
-
-# Draw a rectangle on the selected region
-rect = Rectangle((x1, y1), x2 - x1, y2 - y1, linewidth=1, edgecolor='r', facecolor='none')
-ax.add_patch(rect)
+x_coordinates=[]
+y_coordinates=[]
+for i in range(len(points)):
+    x_coordinates.append(points[i][0])
+    y_coordinates.append(points[i][1])
+    selected_color=extract_color(image_path,x_coordinates[i],y_coordinates[i])
+    print(f"Color at ({x_coordinates[i]}, {y_coordinates[i]}): {selected_color}")
 
 # Show the image with the selected region
-plt.imshow(img)
+#plt.imshow(img)
 plt.show()
 
-# Extract and print the color of the selected region
-selected_x, selected_y = int(x1), int(y1)
-selected_color = extract_color(image_path, selected_x, selected_y)
-print(f"Color at ({selected_x}, {selected_y}): {selected_color}")
+
+

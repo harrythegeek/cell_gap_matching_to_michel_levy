@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from ipywidgets import interact, FloatSlider, IntSlider
 from matplotlib.patches import Rectangle
+import os
+
 
 wavelengths = np.arange(360, 830, 1)
 
@@ -193,9 +195,10 @@ ax.set_ylim(*ylims)
 # plt.savefig("./images/extended_chart.png") #<-- uncomment to save
 plt.show()
 
+
 #--- setup
-birefringences = np.linspace(0, 0.1, 1000, endpoint=True)
-thicknesses    = np.linspace(0,50, 100, endpoint=True)
+birefringences = np.linspace(0.11, 0.14, 1000, endpoint=True)
+thicknesses    = np.linspace(0,5, 10, endpoint=True)
 
 #--- calculation
 plotimage = np.zeros([len(thicknesses), len(birefringences), 3])
@@ -276,7 +279,7 @@ plt.show()
 
 # --- setup
 birefs = np.linspace(0.12, 0.17, 1000, endpoint=True)
-thickness = 3E3
+thickness = 4E3
 
 # --- calculation
 RGB_one_thickness = []
@@ -382,9 +385,30 @@ def plot_color(birefringence, thickness, compensator=0):
     ax.text(0, 0, "Order: {:d}".format(order), backgroundcolor="white",
             ha="left", va="top")
 
-    plt.show()
+    output_directory=r'C:\Users\Harry.Delalis\PycharmProjects\cell_gap_matching_to_michel_levy\colour_images'
+    filename=f"figure_{thickness}.png"
+    filepath=os.path.join(output_directory,filename)
+    plt.savefig(filepath)
+    #plt.show()
 
-interact(plot_color,
-         birefringence=FloatSlider(min=0, max=0.2, step=0.0001),
-         thickness=FloatSlider(min=20, max=40, step=2),
-         compensator=IntSlider(min=-2, max=2, step=1))
+
+
+start=3.4
+end=4.7
+step=0.0125
+
+current_value=start
+
+while current_value<=end:
+
+    plot_color(0.06975,current_value)
+
+
+    current_value+=step
+
+
+
+#interact(plot_color,
+         #birefringence=FloatSlider(min=0, max=0.2, step=0.0001),
+         #thickness=FloatSlider(min=20, max=40, step=2),
+         #compensator=IntSlider(min=-2, max=2, step=1))
