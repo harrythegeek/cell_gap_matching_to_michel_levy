@@ -29,8 +29,6 @@ def add_text_marker(image_path, coordinates, text,  text_color=(255, 0, 0)):
     # Alternatively, you can save the modified image
     image.save("output_image.jpg")
 
-
-
 def extract_color(image, x, y):
     # Open the image using Pillow (PIL)
     img = Image.open(image)
@@ -47,12 +45,9 @@ def extract_color(image, x, y):
 #image_path_2=r"C:\Users\Harry.Delalis\PycharmProjects\cell_gap_matching_to_michel_levy\output_image.jpg"
 
 #HOME EDITION
-image_path=r"C:\Users\User\PycharmProjects\cell_gap_matching_to_michel_levy\images\R486-02-ON_collage.jpg"
+image_path=r"C:\Users\User\PycharmProjects\cell_gap_matching_to_michel_levy\images\edited_image.jpg"
 directory_path=r"C:\Users\User\PycharmProjects\cell_gap_matching_to_michel_levy\colour_images"
 image_path_2=r"C:\Users\User\PycharmProjects\cell_gap_matching_to_michel_levy\output_image.jpg"
-
-
-
 
 
 img = plt.imread(image_path)
@@ -60,9 +55,6 @@ img = plt.imread(image_path)
 # Create a figure and display the image
 fig, ax = plt.subplots()
 ax.imshow(img)
-
-
-
 
 # Prompt the user to click on points to define a rectangle
 points = plt.ginput(100, timeout=-1)
@@ -81,8 +73,6 @@ for i in range(len(points)):
 
     colour_database.append(selected_color)
     xy_coordinates.append(points)
-
-
 
 def is_color_within_range(actual_color, target_color, tolerance):
     for a, t in zip(actual_color, target_color):
@@ -189,12 +179,7 @@ def find_closest_color(input_color, visited_pixels):
 #search_for_color(image_path, target_color, tolerance)
 #plot_image_with_markers(image_path,matched_coordinates)
 
-
-
 dictionary,closest_colour_database=process_images_in_directory(directory_path)
-
-
-
 
 
 #for the first iteration it will take the original image path
@@ -225,13 +210,8 @@ for q in range(len(closest_colour_database)):
     else:
             add_text_marker(image_path_2,points[q], text=desired_part)
 
-
 # Show the image with the selected region
 #plt.imshow(img)
 plt.show()
 
-
-
-
-#print('this is the dictionary printed outside of the def',dictionary)
 
