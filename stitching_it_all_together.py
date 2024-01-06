@@ -40,9 +40,20 @@ def extract_color(image, x, y):
     return color
 
 # Load your image
-image_path = r"C:\Users\Harry.Delalis\PycharmProjects\cell_gap_matching_to_michel_levy\images\R403-04-03_ON_20230912T113546_S1-100_A5.6.jpg"
-image_path_2=r"C:\Users\Harry.Delalis\PycharmProjects\cell_gap_matching_to_michel_levy\output_image.jpg"
+
+#WORK EDITION
+#image_path = r"C:\Users\Harry.Delalis\PycharmProjects\cell_gap_matching_to_michel_levy\images\R403-04-03_ON_20230912T113546_S1-100_A5.6.jpg"
 #directory_path = r'C:\Users\Harry.Delalis\PycharmProjects\cell_gap_matching_to_michel_levy\colour_images'
+#image_path_2=r"C:\Users\Harry.Delalis\PycharmProjects\cell_gap_matching_to_michel_levy\output_image.jpg"
+
+#HOME EDITION
+image_path=r"C:\Users\User\PycharmProjects\cell_gap_matching_to_michel_levy\images\R486-02-ON_collage.jpg"
+directory_path=r"C:\Users\User\PycharmProjects\cell_gap_matching_to_michel_levy\colour_images"
+image_path_2=r"C:\Users\User\PycharmProjects\cell_gap_matching_to_michel_levy\output_image.jpg"
+
+
+
+
 
 img = plt.imread(image_path)
 
@@ -70,6 +81,7 @@ for i in range(len(points)):
 
     colour_database.append(selected_color)
     xy_coordinates.append(points)
+
 
 
 def is_color_within_range(actual_color, target_color, tolerance):
@@ -171,9 +183,8 @@ def find_closest_color(input_color, visited_pixels):
 
 # Example usage
 #image_path = r"C:\Users\Harry.Delalis\PycharmProjects\cell_gap_matching_to_michel_levy\images\R486-02-ON_collage.jpg"  # Change this to your image file path
-directory_path = r'C:\Users\Harry.Delalis\PycharmProjects\cell_gap_matching_to_michel_levy\colour_images'
-target_color = (0, 0, 0)  # Replace with your target RGB color
-tolerance = 10
+#target_color = (0, 0, 0)  # Replace with your target RGB color
+#tolerance = 10
 #matched_coordinates=search_for_color(image_path,target_color,tolerance)
 #search_for_color(image_path, target_color, tolerance)
 #plot_image_with_markers(image_path,matched_coordinates)
@@ -186,8 +197,8 @@ dictionary,closest_colour_database=process_images_in_directory(directory_path)
 
 
 
-    #for the first iteration it will take the original image path
-    #for the second iteration it will take the image created with the writing on it
+#for the first iteration it will take the original image path
+#for the second iteration it will take the image created with the writing on it
 
 for i in range(len(colour_database)):
     print(i)
@@ -195,10 +206,18 @@ for i in range(len(colour_database)):
 
 for q in range(len(closest_colour_database)):
     original_string=dictionary[closest_colour_database[q]]
-    start_index=93
-    end_index=97
+
+    #WORK EDITION
+    #start_index=93
+    #end_index=97
+
+    #HOME EDITION
+    start_index=84
+    end_index=88
+
     desired_part=original_string[start_index:end_index]
     print('original string',original_string)
+    print(len(original_string))
 
     #for i in range(len(points)):
     if q==0:
